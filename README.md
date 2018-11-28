@@ -14,14 +14,14 @@ For simplicity, the [NodeMCU Lua-based firmware](https://nodemcu.readthedocs.io/
 ## Code
 All of the Lua code running on the board for this project can be found in the `lua/` subdiretory of this repo:
 
-File | Description
--- | --
-[`_init.lua`](lua/init.lua) | Initial code executed from LFS by firmware
-[`dummy_strings.lua`](lua/dummy_strings.lua) | Dummy file, forces some strings to be loaded from LFS to save RAM
-[`config.lua.example`](lua/config.lua.example) | Template for WiFi and Spotify backend config
-[`streaming_rest.lua`](lua/streaming_rest.lua) | Hacky streaming HTTPS JSON REST client (to save RAM)
-[`main.lua`](lua/main.lua) | Loads config, sets up display and connects to WiFi
-[`spotify.lua`](lua/spotify.lua) | Main Spotify remote application
+| File | Description |
+| --- | --- |
+| [`_init.lua`](lua/_init.lua) | Initial code executed from LFS by firmware |
+| [`dummy_strings.lua`](lua/dummy_strings.lua) | Dummy file, forces some strings to be loaded from LFS to save RAM |
+| [`config.lua.example`](lua/config.lua.example) | Template for WiFi and Spotify backend config |
+| [`streaming_rest.lua`](lua/streaming_rest.lua) | Hacky streaming HTTPS JSON REST client (to save RAM) |
+| [`main.lua`](lua/main.lua) | Loads config, sets up display and connects to WiFi |
+| [`spotify.lua`](lua/spotify.lua) | Main Spotify remote application |
 
 ## Setup
 While the code is pre-flashed onto the microcontroller, it needs WiFi credentials and a Spotify token to work. These are stored in a `config.lua` file which should be uploaded to the board:
