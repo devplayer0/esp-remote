@@ -37,9 +37,9 @@ lazy_static! {
     static ref SPOTIFY_SCOPES: Vec<&'static str> = vec![ "user-read-playback-state", "user-read-currently-playing", "user-modify-playback-state" ];
     static ref SPOTIFY_SCOPES_ENCODED: String = SPOTIFY_SCOPES.join("%20");
     static ref SPOTIFY_SCOPES_VALIDATION: HashSet<&'static str> = HashSet::from_iter(SPOTIFY_SCOPES.iter().cloned());
+    static ref SPOTIFY_CLIENT_SECRET: &'static str = include_str!("spotify_secret.txt").trim();
 }
 const SPOTIFY_CLIENT_ID: &'static str = "fa91072114d148eaa15f9b59dcf564f7";
-const SPOTIFY_CLIENT_SECRET: &'static str = "***REMOVED***";
 
 #[derive(Debug, Deserialize)]
 struct SpotifyResponse {
@@ -95,7 +95,7 @@ impl User {
             client.post("https://accounts.spotify.com/api/token")
             .form(&[
                   ("client_id", SPOTIFY_CLIENT_ID),
-                  ("client_secret", SPOTIFY_CLIENT_SECRET),
+                  ("client_secret", *SPOTIFY_CLIENT_SECRET),
                   ("grant_type", "authorization_code"),
                   ("code", code),
                   ("redirect_uri", &SPOTIFY_REDIRECT_URI.replace("%2F", "/")),
@@ -134,7 +134,7 @@ impl User {
             reqwest::Client::new().post("https://accounts.spotify.com/api/token")
             .form(&[
                   ("client_id", SPOTIFY_CLIENT_ID),
-                  ("client_secret", SPOTIFY_CLIENT_SECRET),
+                  ("client_secret", *SPOTIFY_CLIENT_SECRET),
                   ("grant_type", "refresh_token"),
                   ("refresh_token", self.refresh_token.as_ref().unwrap()),
             ])
