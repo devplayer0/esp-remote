@@ -1,0 +1,9 @@
+local config = {}
+ 
+config.wifi = {}
+config.wifi.ssid = "My WiFi"
+config.wifi.pwd = "hunter2"
+ 
+config.remote_token = "abcDEF1234567890"
+ 
+return config
